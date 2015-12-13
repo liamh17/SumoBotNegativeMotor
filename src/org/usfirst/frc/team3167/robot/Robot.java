@@ -33,17 +33,49 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() 
     {
-    	//TODO: Check all values for if statements and motor speeds
+    	/*TODO:
+    	 * Check axes. 
+    	 * Check motor values, negative vs positive. 
+    	 * Check correct axis number and move value. 
+    	 */
     	if(driveStick.getRawAxis(5) == 1)
     	{
+    		//Forwards
     		leftMotor.set(0.5);
-    		rightMotor.set(0.5);
+    		rightMotor.set(-0.5);
     	}
     	else if(driveStick.getRawAxis(5) == -1) 
     	{
+    		//Backwards
     		leftMotor.set(-0.5); 
     		rightMotor.set(0.5);
     	}
-    	else if(driveStick.getRawAxis(3) == 1)
+    	else if(driveStick.getRawAxis(3) == 1) 
+    	{
+    		//Left spin
+    		leftMotor.set(-0.5);
+    		rightMotor.set(-0.5); 
+    	}
+    	else if(driveStick.getRawAxis(3) == -1) 
+    	{
+    		//Right spin
+    		leftMotor.set(0.5);
+    		rightMotor.set(0.5);
+    	}
+    	//TODO: Find what button X is equivalent to in numeric value on joystick.
+    	else if(driveStick.getRawButton(1) /*== true*/)
+    	{
+    		stop(); 
+    	}
+    }
+    public void stop() 
+    {
+    	leftMotor.set(0.0);
+    	
+    	timer.start(); 
+    	rightMotor.set(-0.1); 
+    	timer.delay(0.2);
+    	
+    	timer.stop(); 
     }
 }
