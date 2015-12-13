@@ -70,11 +70,22 @@ public class Robot extends IterativeRobot {
     }
     public void stop() 
     {
+    	/*
+    	 * Stop leftMotor, start timer, set rightMotor to 
+    	 * one-tenths speed and do that for five hundredths of
+    	 * a second. Repeat this just going the opposite direction.
+    	 * 
+    	 * This is used to compensate for either direction of move-
+    	 * ment. It's almost like a sudden jolt of movement that stops 
+    	 * the robot. 
+    	 */
     	leftMotor.set(0.0);
     	
     	timer.start(); 
     	rightMotor.set(-0.1); 
-    	timer.delay(0.2);
+    	timer.delay(0.05);
+    	rightMotor.set(0.1);
+    	timer.delay(0.05);
     	
     	timer.stop(); 
     }
